@@ -11,7 +11,7 @@ namespace Notification
         private Size FormSize = new Size();
 
         private Point Gap = new Point(5, 5);
-        private int TimeToHide = 8;//todo
+        private int TimeToHide = 13;//todo
 
         public NotificationForm()
         {
@@ -25,6 +25,13 @@ namespace Notification
             var UserResolution = Screen.PrimaryScreen.WorkingArea;
             SetupViewLocation(UserResolution.Width - FormSize.Width - Gap.X, UserResolution.Height - FormSize.Height - Gap.Y);
             this.Location = FormStartPosition;
+            HideNotification();
+        }
+
+        public async void HideNotification()
+        {
+            await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(TimeToHide));
+            this.Close();
         }
 
         public void SetupViewLocation(int x, int y)
@@ -46,6 +53,3 @@ namespace Notification
     }
 
 }
-
-// TODO
-// Change size of form & controls to user resolution
